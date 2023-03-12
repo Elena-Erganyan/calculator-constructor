@@ -14,6 +14,10 @@ export const StyledBlocksArea = styled.div<StyledBlocksAreaProps>`
   justify-self: end;
   grid-template-rows: repeat(4, 1fr);
   gap: 1.2rem;
-  width: 24rem;
   height: 44.8rem; // temporarily
+  width: 100%;
+
+  @media only screen and (min-width: 768px) {
+    width: 24rem;
+  }
 `;

@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const StyledSwitchButton = styled.div`
   display: flex;
   justify-content: center;
+  align-self: center;
+  width: fit-content;
   border-radius: 0.6rem;
   background-color: ${({ theme }) => theme.lightGray};
 
@@ -26,8 +28,8 @@ export const StyledSwitchLabel = styled.label`
 
   span {
     color: ${({ theme }) => theme.darkGray};
+    font-family: "Inter Medium", sans-serif;
     font-size: 1.4rem;
     line-height: 1.07;
-    font-weight: 500;
   }
 `;

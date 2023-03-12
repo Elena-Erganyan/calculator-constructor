@@ -1,7 +1,13 @@
 import { createGlobalStyle } from "styled-components";
-import InterWoff2 from "./fonts/Inter-Regular.woff2";
-import InterWoff from "./fonts/Inter-Regular.woff";
-import InterTtf from "./fonts/Inter-Regular.ttf";
+import InterRegularWoff2 from "./fonts/Inter-Regular.woff2";
+import InterRegularWoff from "./fonts/Inter-Regular.woff";
+import InterRegularTtf from "./fonts/Inter-Regular.ttf";
+import InterMediumWoff2 from "./fonts/Inter-Medium.woff2";
+import InterMediumWoff from "./fonts/Inter-Medium.woff";
+import InterMediumTtf from "./fonts/Inter-Medium.ttf";
+import InterExtraBoldWoff2 from "./fonts/Inter-ExtraBold.woff2";
+import InterExtraBoldWoff from "./fonts/Inter-ExtraBold.woff";
+import InterExtraBoldTtf from "./fonts/Inter-ExtraBold.ttf";
 
 export const colors = {
   white: "#FFFFFF",
@@ -18,10 +24,28 @@ export const colors = {
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
-    font-family: 'Inter';
-    src: url(${InterWoff2}) format('woff2'),
-        url(${InterWoff}) format('woff'),
-        url(${InterTtf}) format('truetype');
+    font-family: 'Inter Regular';
+    src: url(${InterRegularWoff2}) format('woff2'),
+        url(${InterRegularWoff}) format('woff'),
+        url(${InterRegularTtf}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Inter Medium';
+    src: url(${InterMediumWoff2}) format('woff2'),
+        url(${InterMediumWoff}) format('woff'),
+        url(${InterMediumTtf}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Inter Extra Bold';
+    src: url(${InterExtraBoldWoff2}) format('woff2'),
+        url(${InterExtraBoldWoff}) format('woff'),
+        url(${InterExtraBoldTtf}) format('truetype');
     font-weight: normal;
     font-style: normal;
   }
@@ -30,7 +54,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter Regular', sans-serif;
     font-size: 1.4rem;
     color: ${colors.black};
     scrollbar-width: thin;

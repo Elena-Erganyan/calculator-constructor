@@ -19,13 +19,14 @@ export const StyledButton = styled.button<StyledButtonProps>`
     css`
       grid-area: ${digit === "," ? "comma" : `d${digit}`};
     `}
+  height: 4.8rem;
   background-color: ${({ theme }) => theme.white};
   color: ${({ theme }) => theme.black};
   border: 1px solid ${({ theme }) => theme.lightGray};
   border-radius: 0.6rem;
+  font-family: "Inter Medium", sans-serif;
   font-size: 1.4rem;
   line-height: 1.07;
-  font-weight: 500;
   text-align: center;
   cursor: pointer;
 

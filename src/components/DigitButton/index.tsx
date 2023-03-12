@@ -5,12 +5,8 @@ interface DigitButtonProps {
 }
 
 const DigitButton = ({ digit }: DigitButtonProps) => {
-  const handleOnClick: React.MouseEventHandler<HTMLButtonElement> = () => {
-    
-  };
-
   return (
-    <StyledButton digit={digit} onClick={handleOnClick}>
+    <StyledButton digit={digit} onClick={() => console.log(digit)}>
       {digit}
     </StyledButton>
   );
