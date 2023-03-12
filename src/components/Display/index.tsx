@@ -1,13 +1,13 @@
+import { useAppSelector } from "../../redux/hooks";
 import { StyledBlockWrapper } from "../commonStyledComps";
 import { StyledDisplay } from "./styled";
 
-interface DisplayProps {
-  info: number | string;
-}
-const Display = ({ info }: DisplayProps) => {
+const Display = () => {
+  const value = useAppSelector((state) => state.calculator.value);
+
   return (
     <StyledBlockWrapper draggable={true} style={{ height: "6rem" }}>
-      <StyledDisplay>{info}</StyledDisplay>
+      <StyledDisplay>{value}</StyledDisplay>
     </StyledBlockWrapper>
   );
 };

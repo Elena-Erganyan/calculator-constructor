@@ -1,4 +1,6 @@
 import { useTheme } from "styled-components";
+import { clear } from "../../redux/calculatorSlice";
+import { useAppDispatch } from "../../redux/hooks";
 import { StyledSwitchButton, StyledSwitchLabel } from "./styled";
 
 interface SwitchButtonProps {
@@ -8,6 +10,12 @@ interface SwitchButtonProps {
 
 const SwitchButton = ({ mode, setMode }: SwitchButtonProps) => {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
+
+  const handleOnConstructorClick = () => {
+    setMode("constructor");
+    dispatch(clear());
+  };
 
   return (
     <StyledSwitchButton>
@@ -48,7 +56,7 @@ const SwitchButton = ({ mode, setMode }: SwitchButtonProps) => {
         checked={mode === "constructor"}
         id="constructor"
         name="toggle"
-        onChange={() => setMode("constructor")}
+        onChange={handleOnConstructorClick}
         type="radio"
         value="constructor"
       />

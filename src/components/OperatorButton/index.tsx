@@ -1,12 +1,16 @@
+import { chooseOperation } from "../../redux/calculatorSlice";
+import { useAppDispatch } from "../../redux/hooks";
 import { StyledButton } from "../commonStyledComps";
 
 interface OperatorButtonProps {
-  operator: string;
+  operator: Operation;
 }
 
 const OperatorButton = ({ operator }: OperatorButtonProps) => {
+  const dispatch = useAppDispatch();
+
   return (
-    <StyledButton onClick={() => console.log(operator)}>
+    <StyledButton onClick={() => dispatch(chooseOperation(operator))}>
       {operator}
     </StyledButton>
   );

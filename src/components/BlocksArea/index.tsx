@@ -11,7 +11,7 @@ interface BlocksAreaProps {
 const BlocksArea = ({ mode }: BlocksAreaProps) => {
   return (
     <StyledBlocksArea mode={mode}>
-      <Display info={0} />
+      <Display />
       <Operators />
       <Digits />
       <EqualButton />
