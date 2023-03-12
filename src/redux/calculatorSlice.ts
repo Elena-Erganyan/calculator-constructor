@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { evaluate } from "../utils";
 
 export interface CalculatorState {
+  display: string;
   operation?: Operation;
   overwrite: boolean;
   previousValue?: string;
@@ -9,7 +10,8 @@ export interface CalculatorState {
 }
 
 const initialState: CalculatorState = {
-  operation: undefined,
+  display: "0",
+  operation: [],
   overwrite: true,
   previousValue: undefined,
   value: "0",
@@ -22,6 +24,7 @@ export const calculatorSlice = createSlice({
     addDigit: (state, action: PayloadAction<string>) => {
       if (state.overwrite) {
         state.value = (action.payload === "," ? "0" : "") + action.payload;
+        state.display = state.value;
         state.overwrite = false;
         return;
       }
@@ -31,22 +34,28 @@ export const calculatorSlice = createSlice({
       if (state.value.includes(",") && action.payload === ",") return;
 
       state.value += action.payload;
+      state.display = state.value;
     },
     chooseOperation: (state, action: PayloadAction<Operation>) => {
       if (state.previousValue !== undefined) {
-        if (state.operation) {
+        if (state.operation.length) {
           const result = evaluate(
             state.value,
             state.previousValue,
             state.operation
           );
-          state.value = result;
-          state.previousValue = result;
+          if (result !== undefined) {
+            state.value = undefined;
+            state.display = result;
+            state.previousValue = result;
+          }
         }
       } else {
         state.previousValue = state.value;
+        state.value = undefined;
       }
-      state.operation = action.payload;
+
+      state.operation.push(action.payload);
       state.overwrite = true;
     },
     clear: (state) => {
@@ -54,6 +63,7 @@ export const calculatorSlice = createSlice({
       state.overwrite = true;
       state.previousValue = undefined;
       state.value = "0";
+      state.display = state.value;
     },
     calculate: (state) => {
       const lastChar = state.value.length - 1;
@@ -76,8 +86,9 @@ export const calculatorSlice = createSlice({
       }
 
       state.previousValue = undefined;
-      state.operation = undefined;
+      state.operation = [];
       state.value = result;
+      state.display = state.value;
       state.overwrite = true;
     },
   },

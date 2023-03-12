@@ -4,7 +4,12 @@ export const evaluate = (
   operation: Operation
 ) => {
   console.log({valueStr, previousValueStr, operation});
-  
+
+  if (valueStr === undefined) {
+    operation = [operation[1]];
+    return;
+  }
+
   const value = parseFloat(valueStr.replace(",", "."));
   const previousValue = parseFloat(previousValueStr.replace(",", "."));
 
@@ -12,7 +17,7 @@ export const evaluate = (
 
   let result;
 
-  switch (operation) {
+  switch (operation.pop()) {
     case "/":
       result = previousValue / value;
       break;
