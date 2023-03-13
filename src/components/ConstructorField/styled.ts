@@ -5,7 +5,7 @@ export const StyledConstructorField = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5.4rem;
+  /* padding: 5.4rem; */
   border-radius: 0.6rem;
   border: 2px dashed ${({ theme }) => theme.gray};
   height: 44.8rem;

@@ -1,3 +1,4 @@
+import { Droppable } from "@hello-pangea/dnd";
 import Digits from "../Digits";
 import Display from "../Display";
 import EqualButton from "../EqualButton";
@@ -10,12 +11,21 @@ interface BlocksAreaProps {
 
 const BlocksArea = ({ mode }: BlocksAreaProps) => {
   return (
-    <StyledBlocksArea mode={mode}>
-      <Display />
-      <Operators />
-      <Digits />
-      <EqualButton />
-    </StyledBlocksArea>
+    <Droppable droppableId="blocksArea">
+      {(provided) => (
+        <StyledBlocksArea
+          mode={mode}
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+        >
+          <Display />
+          <Operators />
+          <Digits />
+          <EqualButton />
+          {provided.placeholder}
+        </StyledBlocksArea>
+      )}
+    </Droppable>
   );
 };
 

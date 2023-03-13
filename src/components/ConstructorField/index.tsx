@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { useTheme } from "styled-components";
+import { Droppable } from "@hello-pangea/dnd";
 import {
   StyledConstructorField,
   StyledConstructorTitle,
@@ -13,22 +12,20 @@ interface ConstructorFieldProps {
 }
 
 const ConstructorField = ({ title, text, image }: ConstructorFieldProps) => {
-  const theme = useTheme();
-  const fieldRef = useRef<HTMLDivElement>(null);
-
-  const handleOnDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    if (fieldRef.current) {
-      fieldRef.current.style.backgroundColor = theme.sky;
-    }
-  };
-
   return (
-    <StyledConstructorField onDragOver={handleOnDragOver} ref={fieldRef}>
-      <img alt="Icon" src={image} />
-      <StyledConstructorTitle>{title}</StyledConstructorTitle>
-      <StyledConstructorText>{text}</StyledConstructorText>
-    </StyledConstructorField>
+    <Droppable droppableId="constructorField">
+      {(provided) => (
+        <StyledConstructorField
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+        >
+          <img alt="Icon" src={image} />
+          <StyledConstructorTitle>{title}</StyledConstructorTitle>
+          <StyledConstructorText>{text}</StyledConstructorText>
+          {provided.placeholder}
+        </StyledConstructorField>
+      )}
+    </Droppable>
   );
 };
 
