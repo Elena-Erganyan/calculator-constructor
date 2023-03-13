@@ -29,7 +29,10 @@ export const calculatorSlice = createSlice({
         return;
       }
 
-      if (state.value === "0" && action.payload === "0") return;
+      if (state.value === "0" && action.payload !== ",") {
+        state.overwrite = true;
+        return;
+      }
 
       if (state.value?.includes(",") && action.payload === ",") return;
 
@@ -66,8 +69,10 @@ export const calculatorSlice = createSlice({
       state.display = state.value;
     },
     calculate: (state) => {
-      const lastChar = state.value.length - 1;
-      if (state.value[lastChar] === ",") {
+      if (
+        state.value !== undefined &&
+        state?.value[state.value.length - 1] === ","
+      ) {
         state.value = state.value?.slice(0, -1);
       }
 
@@ -78,18 +83,24 @@ export const calculatorSlice = createSlice({
         state.overwrite = true;
         return;
       }
+      if (state.previousValue !== undefined) {
+        let result = evaluate(
+          state.value,
+          state.previousValue,
+          state.operation
+        );
 
-      let result = evaluate(state.value, state.previousValue, state.operation);
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        if (/(-?Infinity|NaN)/.test(`${result}`)) {
+          result = "Не определено";
+        }
 
-      if (/(-?Infinity|NaN)/.test(result)) {
-        result = "Не определено";
+        state.previousValue = undefined;
+        state.operation = [];
+        state.value = result;
+        state.display = state.value;
+        state.overwrite = true;
       }
-
-      state.previousValue = undefined;
-      state.operation = [];
-      state.value = result;
-      state.display = state.value;
-      state.overwrite = true;
     },
   },
 });
