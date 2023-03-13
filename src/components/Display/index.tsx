@@ -6,7 +6,7 @@ const Display = () => {
   const display = useAppSelector((state) => state.calculator.display);
 
   return (
-    <StyledBlockWrapper draggable={true} style={{ height: "6rem" }}>
+    <StyledBlockWrapper draggable={true} style={{ minHeight: "6rem" }}>
       <StyledDisplay>{display}</StyledDisplay>
     </StyledBlockWrapper>
   );

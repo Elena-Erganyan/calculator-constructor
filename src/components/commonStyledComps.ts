@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface StyledButtonProps {
-  digit?: number | ",";
+  digit?: string;
 }
 
 export const StyledBlockWrapper = styled.div`

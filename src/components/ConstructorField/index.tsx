@@ -18,7 +18,9 @@ const ConstructorField = ({ title, text, image }: ConstructorFieldProps) => {
 
   const handleOnDragOver = (e: React.DragEvent) => {
     e.preventDefault();
-    fieldRef!.current.style.backgroundColor = theme.sky;
+    if (fieldRef.current) {
+      fieldRef.current.style.backgroundColor = theme.sky;
+    }
   };
 
   return (

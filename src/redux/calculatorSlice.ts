@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { evaluate } from "../utils";
 
 export interface CalculatorState {
-  display: string;
-  operation?: Operation;
+  display?: string;
+  operation?: Operation[];
   overwrite: boolean;
   previousValue?: string;
-  value: string;
+  value?: string;
 }
 
 const initialState: CalculatorState = {
@@ -31,14 +31,14 @@ export const calculatorSlice = createSlice({
 
       if (state.value === "0" && action.payload === "0") return;
 
-      if (state.value.includes(",") && action.payload === ",") return;
+      if (state.value?.includes(",") && action.payload === ",") return;
 
       state.value += action.payload;
       state.display = state.value;
     },
     chooseOperation: (state, action: PayloadAction<Operation>) => {
       if (state.previousValue !== undefined) {
-        if (state.operation.length) {
+        if (state.operation?.length) {
           const result = evaluate(
             state.value,
             state.previousValue,
@@ -55,7 +55,7 @@ export const calculatorSlice = createSlice({
         state.value = undefined;
       }
 
-      state.operation.push(action.payload);
+      state.operation?.push(action.payload);
       state.overwrite = true;
     },
     clear: (state) => {
@@ -68,7 +68,7 @@ export const calculatorSlice = createSlice({
     calculate: (state) => {
       const lastChar = state.value.length - 1;
       if (state.value[lastChar] === ",") {
-        state.value = state.value.slice(0, -1);
+        state.value = state.value?.slice(0, -1);
       }
 
       if (!state.operation) {

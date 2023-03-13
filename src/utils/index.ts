@@ -1,10 +1,8 @@
 export const evaluate = (
-  valueStr: string,
+  valueStr: string | undefined,
   previousValueStr: string,
-  operation: Operation
+  operation: Operation[]
 ) => {
-  console.log({valueStr, previousValueStr, operation});
-
   if (valueStr === undefined) {
     operation = [operation[1]];
     return;
@@ -15,7 +13,7 @@ export const evaluate = (
 
   if (isNaN(value) || isNaN(previousValue)) return "";
 
-  let result;
+  let result = 0;
 
   switch (operation.pop()) {
     case "/":
