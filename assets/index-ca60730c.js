@@ -162,7 +162,7 @@ Error generating stack: `+i.message+`
   font-size: 1.2rem;
   line-height: 1.25;
   color: ${({theme:e})=>e.mediumGray};
-`,o1=({title:e,text:t,image:n})=>{const r=Ep(),o=K.useRef(null);return St(t1,{onDragOver:l=>{l.preventDefault(),o.current&&(o.current.style.backgroundColor=r.sky)},ref:o,children:[U("img",{alt:"Icon",src:n}),U(n1,{children:e}),U(r1,{children:t})]})},i1="/assets/add-icon-ccb8ff9e.svg",l1=()=>{const[e,t]=K.useState(document.documentElement.clientWidth);let n;const r=()=>{clearTimeout(n),n=setTimeout(()=>{t(document.documentElement.clientWidth)},300)};return K.useEffect(()=>(window.addEventListener("resize",r),()=>window.removeEventListener("resize",r)),[]),e},u1=()=>{const e=l1();return U(o1,{title:"Перетащите сюда",text:`любой элемент из ${e>768?"левой":"нижней"} панели`,image:i1})},a1=He.div`
+`,o1=({title:e,text:t,image:n})=>{const r=Ep(),o=K.useRef(null);return St(t1,{onDragOver:l=>{l.preventDefault(),o.current&&(o.current.style.backgroundColor=r.sky)},ref:o,children:[U("img",{alt:"Icon",src:n}),U(n1,{children:e}),U(r1,{children:t})]})},i1="/calculator-constructor/assets/add-icon-ccb8ff9e.svg",l1=()=>{const[e,t]=K.useState(document.documentElement.clientWidth);let n;const r=()=>{clearTimeout(n),n=setTimeout(()=>{t(document.documentElement.clientWidth)},300)};return K.useEffect(()=>(window.addEventListener("resize",r),()=>window.removeEventListener("resize",r)),[]),e},u1=()=>{const e=l1();return U(o1,{title:"Перетащите сюда",text:`любой элемент из ${e>768?"левой":"нижней"} панели`,image:i1})},a1=He.div`
   display: flex;
   justify-content: center;
   align-self: center;
@@ -201,7 +201,7 @@ Error generating stack: `+i.message+`
   @media only screen and (min-width: 768px) {
     width: 24rem;
   }
-`,f1=({mode:e,setMode:t})=>St(c1,{children:[U(s1,{mode:e,setMode:t}),U(u1,{})]}),d1="/assets/Inter-Regular-954bfdf8.woff2",p1="/assets/Inter-Regular-abd7e0a4.woff",h1="/assets/Inter-Regular-41ab0f70.ttf",m1="/assets/Inter-Medium-725913b9.woff2",v1="/assets/Inter-Medium-78509f38.woff",y1="/assets/Inter-Medium-10d48331.ttf",g1="/assets/Inter-ExtraBold-3fb8775e.woff2",w1="/assets/Inter-ExtraBold-a1d159a6.woff",S1="/assets/Inter-ExtraBold-4e2473b9.ttf",hn={white:"#FFFFFF",whitishGray:"#F3F4F6",lightGray:"#E2E3E5",gray:"#C4C4C4",mediumGray:"#6B7280",darkGray:"#4D5562",graishBlack:"#111827",black:"#000000",sky:"#F0F9FF",electric:"#5D5FEF"},k1=c0`
+`,f1=({mode:e,setMode:t})=>St(c1,{children:[U(s1,{mode:e,setMode:t}),U(u1,{})]}),d1="/calculator-constructor/assets/Inter-Regular-954bfdf8.woff2",p1="/calculator-constructor/assets/Inter-Regular-abd7e0a4.woff",h1="/calculator-constructor/assets/Inter-Regular-41ab0f70.ttf",m1="/calculator-constructor/assets/Inter-Medium-725913b9.woff2",v1="/calculator-constructor/assets/Inter-Medium-78509f38.woff",y1="/calculator-constructor/assets/Inter-Medium-10d48331.ttf",g1="/calculator-constructor/assets/Inter-ExtraBold-3fb8775e.woff2",w1="/calculator-constructor/assets/Inter-ExtraBold-a1d159a6.woff",S1="/calculator-constructor/assets/Inter-ExtraBold-4e2473b9.ttf",hn={white:"#FFFFFF",whitishGray:"#F3F4F6",lightGray:"#E2E3E5",gray:"#C4C4C4",mediumGray:"#6B7280",darkGray:"#4D5562",graishBlack:"#111827",black:"#000000",sky:"#F0F9FF",electric:"#5D5FEF"},k1=c0`
   @font-face {
     font-family: 'Inter Regular';
     src: url(${d1}) format('woff2'),
