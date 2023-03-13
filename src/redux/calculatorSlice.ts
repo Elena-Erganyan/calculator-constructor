@@ -84,16 +84,11 @@ export const calculatorSlice = createSlice({
         return;
       }
       if (state.previousValue !== undefined) {
-        let result = evaluate(
+        const result = evaluate(
           state.value,
           state.previousValue,
           state.operation
         );
-
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        if (/(-?Infinity|NaN)/.test(`${result}`)) {
-          result = "Не определено";
-        }
 
         state.previousValue = undefined;
         state.operation = [];

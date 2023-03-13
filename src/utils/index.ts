@@ -30,5 +30,9 @@ export const evaluate = (
       break;
   }
 
+  if (/(-?Infinity|NaN)/.test(`${result}`)) {
+    return "Не определено";
+  }
+
   return `${result}`.replace(".", ",");
 };

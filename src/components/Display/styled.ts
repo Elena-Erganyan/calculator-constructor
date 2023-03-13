@@ -9,4 +9,5 @@ export const StyledDisplay = styled.div`
   font-size: 3.6rem;
   line-height: 1.22;
   text-align: right;
+  overflow: auto;
 `;
