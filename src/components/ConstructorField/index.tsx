@@ -11,7 +11,7 @@ interface ConstructorFieldProps {
   image: string;
 }
 
-const ConstructorField = ({ title, text, image }: ConstructorFieldProps) => {
+const ConstructorField = ({ data, title, text, image }: ConstructorFieldProps) => {
   return (
     <Droppable droppableId="constructorField">
       {(provided) => (
@@ -19,9 +19,12 @@ const ConstructorField = ({ title, text, image }: ConstructorFieldProps) => {
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
-          <img alt="Icon" src={image} />
-          <StyledConstructorTitle>{title}</StyledConstructorTitle>
-          <StyledConstructorText>{text}</StyledConstructorText>
+          {data.fields.constructorField?.length ? data.fields.constructorField?.map((Comp) => <Comp />) :
+            <>
+              <img alt="Icon" src={image} />
+              <StyledConstructorTitle>{title}</StyledConstructorTitle>
+              <StyledConstructorText>{text}</StyledConstructorText>
+            </>}
           {provided.placeholder}
         </StyledConstructorField>
       )}

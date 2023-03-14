@@ -1,15 +1,11 @@
-import { Droppable } from "@hello-pangea/dnd";
-import Digits from "../Digits";
-import Display from "../Display";
-import EqualButton from "../EqualButton";
-import Operators from "../Operators";
+import { Droppable, Draggable } from "@hello-pangea/dnd";
 import { StyledBlocksArea } from "./styled";
 
 interface BlocksAreaProps {
   mode: Mode;
 }
 
-const BlocksArea = ({ mode }: BlocksAreaProps) => {
+const BlocksArea = ({ mode, data }: BlocksAreaProps) => {
   return (
     <Droppable droppableId="blocksArea">
       {(provided) => (
@@ -18,10 +14,17 @@ const BlocksArea = ({ mode }: BlocksAreaProps) => {
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
-          <Display />
-          <Operators />
-          <Digits />
-          <EqualButton />
+          {data?.fields.blocksArea.map((Item, i) => (
+            <Draggable draggableId={Item.name} index={i} key={i}>
+              {(provided) => (
+                <Item
+                  innerRef={provided.innerRef}
+                  draggableProps={provided.draggableProps}
+                  dragHandleProps={provided.dragHandleProps}
+                />
+              )}
+            </Draggable>
+          ))}
           {provided.placeholder}
         </StyledBlocksArea>
       )}

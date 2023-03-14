@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface StyledBlocksAreaProps {
-  mode: Mode;
+  mode?: Mode;
 }
 
 export const StyledBlocksArea = styled.div<StyledBlocksAreaProps>`

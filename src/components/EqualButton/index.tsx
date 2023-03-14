@@ -1,27 +1,22 @@
-import { Draggable } from "@hello-pangea/dnd";
 import { calculate } from "../../redux/calculatorSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { StyledBlockWrapper } from "../commonStyledComps";
 import { StyledEqualButton } from "./styled";
 
-const EqualButton = () => {
+const EqualButton = ({innerRef, draggableProps, dragHandleProps }) => {
   const dispatch = useAppDispatch();
 
   return (
-    <Draggable draggableId="equalButton" index={3}>
-      {(provided) => (
-        <StyledBlockWrapper
-          ref={provided.innerRef}
-          style={{ height: "7.2rem" }}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-        >
-          <StyledEqualButton onClick={() => dispatch(calculate())}>
-            =
-          </StyledEqualButton>
-        </StyledBlockWrapper>
-      )}
-    </Draggable>
+    <StyledBlockWrapper
+      ref={innerRef}
+      style={{ height: "7.2rem" }}
+      {...draggableProps}
+      {...dragHandleProps}
+    >
+      <StyledEqualButton onClick={() => dispatch(calculate())}>
+        =
+      </StyledEqualButton>
+    </StyledBlockWrapper>
   );
 };
 

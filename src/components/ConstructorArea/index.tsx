@@ -7,11 +7,11 @@ interface ConstructorAreaProps {
   setMode: React.Dispatch<React.SetStateAction<Mode>>;
 }
 
-const ConstructorArea = ({ mode, setMode }: ConstructorAreaProps) => {
+const ConstructorArea = ({ data, mode, setMode }: ConstructorAreaProps) => {
   return (
     <StyledConstructorArea>
       <SwitchButton mode={mode} setMode={setMode} />
-      <Calculator />
+      <Calculator data={data} />
     </StyledConstructorArea>
   );
 };
