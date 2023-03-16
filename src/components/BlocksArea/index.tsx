@@ -1,30 +1,53 @@
 import { Droppable, Draggable } from "@hello-pangea/dnd";
+import { useAppSelector } from "../../redux/hooks";
+import { findComponent } from "../../utils";
 import { StyledBlocksArea } from "./styled";
 
-interface BlocksAreaProps {
-  mode: Mode;
-}
+const BlocksArea = () => {
+  const blocksArea = useAppSelector(
+    (state) => state.calcConstructor.blocksArea
+  );
 
-const BlocksArea = ({ mode, data }: BlocksAreaProps) => {
+  const constructorField = useAppSelector(
+    (state) => state.calcConstructor.constructorField
+  );
+
+  const mode = useAppSelector((state) => state.calcConstructor.mode);
+
   return (
-    <Droppable droppableId="blocksArea">
+    <Droppable droppableId="blocksArea" isDropDisabled={true}>
       {(provided) => (
         <StyledBlocksArea
           mode={mode}
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
-          {data?.fields.blocksArea.map((Item, i) => (
-            <Draggable draggableId={Item.name} index={i} key={i}>
-              {(provided) => (
-                <Item
-                  innerRef={provided.innerRef}
-                  draggableProps={provided.draggableProps}
-                  dragHandleProps={provided.dragHandleProps}
-                />
-              )}
-            </Draggable>
-          ))}
+          {blocksArea.map((item: string, i: number) => {
+            const Item = findComponent(item);
+
+            return (
+              <Draggable draggableId={item} index={i} key={item}>
+                {(provided, snapshot) => (
+                  <>
+                    <Item
+                      innerRef={provided.innerRef}
+                      draggableProps={provided.draggableProps}
+                      dragHandleProps={provided.dragHandleProps}
+                      style={{
+                        ...provided.draggableProps.style,
+                        opacity: snapshot.isDragging
+                          ? 0.7
+                          : constructorField.some((item: string) =>
+                              item.indexOf(item) !== -1 ? 0.5 : 1
+                            ),
+                      }}
+                    />
+                    {snapshot.isDragging && <Item />}
+                  </>
+                )}
+              </Draggable>
+            );
+          })}
           {provided.placeholder}
         </StyledBlocksArea>
       )}

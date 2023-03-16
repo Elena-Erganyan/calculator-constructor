@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { StyledButton } from "../commonStyledComps";
+import { StyledBlockWrapper, StyledButton } from "../commonStyledComps";
+
+export const StyledEqualButtonWrapper = styled(StyledBlockWrapper)`
+  height: 7.2rem;
+`;
 
 export const StyledEqualButton = styled(StyledButton)`
   height: 6.4rem;

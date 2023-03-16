@@ -1,5 +1,5 @@
 import { addDigit } from "../../redux/calculatorSlice";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { StyledButton } from "../commonStyledComps";
 
 interface DigitButtonProps {
@@ -9,8 +9,15 @@ interface DigitButtonProps {
 const DigitButton = ({ digit }: DigitButtonProps) => {
   const dispatch = useAppDispatch();
 
+  const mode = useAppSelector((state) => state.calcConstructor.mode);
+  const isDisabled = mode !== "runtime";
+
   return (
-    <StyledButton digit={digit} onClick={() => dispatch(addDigit(digit))}>
+    <StyledButton
+      digit={digit}
+      disabled={isDisabled}
+      onClick={() => dispatch(addDigit(digit))}
+    >
       {digit}
     </StyledButton>
   );

@@ -1,19 +1,34 @@
+import {
+  DraggableProvidedDraggableProps,
+  DraggableProvidedDragHandleProps,
+} from "@hello-pangea/dnd";
 import { useAppSelector } from "../../redux/hooks";
-import { StyledBlockWrapper } from "../commonStyledComps";
-import { StyledDisplay } from "./styled";
+import { StyledDisplayWrapper, StyledDisplay } from "./styled";
 
-const Display = ({innerRef, dragHandleProps, draggableProps}) => {
+interface DisplayProps {
+  innerRef: (HTMLDivElement: HTMLDivElement | null) => void;
+  draggableProps: DraggableProvidedDraggableProps;
+  dragHandleProps: DraggableProvidedDragHandleProps;
+  style: React.CSSProperties;
+}
+
+const Display = ({
+  innerRef,
+  dragHandleProps,
+  draggableProps,
+  style,
+}: DisplayProps) => {
   const display = useAppSelector((state) => state.calculator.display);
 
   return (
-    <StyledBlockWrapper
+    <StyledDisplayWrapper
       ref={innerRef}
-      style={{ height: "6rem" }}
       {...draggableProps}
       {...dragHandleProps}
+      style={style}
     >
       <StyledDisplay>{display}</StyledDisplay>
-    </StyledBlockWrapper>
+    </StyledDisplayWrapper>
   );
 };
 

@@ -1,11 +1,16 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { StyledBlocksArea } from "../BlocksArea/styled";
 
-export const StyledConstructorField = styled.div`
+interface StyledConstructorFieldProps {
+  isEmpty: boolean;
+}
+
+export const setStyledConstructorField = () => css`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding: 5.4rem; */
+  padding: 5.4rem;
   border-radius: 0.6rem;
   border: 2px dashed ${({ theme }) => theme.gray};
   height: 44.8rem;
@@ -14,6 +19,12 @@ export const StyledConstructorField = styled.div`
   img {
     margin-bottom: 1.2rem;
   }
+`;
+
+export const StyledConstructorField = styled(
+  StyledBlocksArea
+)<StyledConstructorFieldProps>`
+  ${({ isEmpty }) => isEmpty && setStyledConstructorField()}
 `;
 
 export const StyledConstructorTitle = styled.p`

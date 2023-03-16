@@ -1,3 +1,8 @@
+import Digits from "../components/Digits";
+import Display from "../components/Display";
+import EqualButton from "../components/EqualButton";
+import Operators from "../components/Operators";
+
 export const evaluate = (
   valueStr: string | undefined,
   previousValueStr: string,
@@ -35,4 +40,17 @@ export const evaluate = (
   }
 
   return `${result}`.replace(".", ",");
+};
+
+export const findComponent = (name: string) => {
+  switch (name) {
+    case "Display":
+      return Display;
+    case "Operators":
+      return Operators;
+    case "Digits":
+      return Digits;
+    case "EqualButton":
+      return EqualButton;
+  }
 };

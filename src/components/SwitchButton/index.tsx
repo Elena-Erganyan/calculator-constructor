@@ -1,19 +1,17 @@
 import { useTheme } from "styled-components";
+import { toggleMode } from "../../redux/calcConstructorSlice";
 import { clear } from "../../redux/calculatorSlice";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { StyledSwitchButton, StyledSwitchLabel } from "./styled";
 
-interface SwitchButtonProps {
-  mode: Mode;
-  setMode: React.Dispatch<React.SetStateAction<Mode>>;
-}
-
-const SwitchButton = ({ mode, setMode }: SwitchButtonProps) => {
+const SwitchButton = () => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
 
+  const mode = useAppSelector((state) => state.calcConstructor.mode);
+
   const handleOnConstructorClick = () => {
-    setMode("constructor");
+    dispatch(toggleMode("constructor"));
     dispatch(clear());
   };
 
@@ -23,7 +21,7 @@ const SwitchButton = ({ mode, setMode }: SwitchButtonProps) => {
         checked={mode === "runtime"}
         id="runtime"
         name="toggle"
-        onChange={() => setMode("runtime")}
+        onChange={() => dispatch(toggleMode("runtime"))}
         type="radio"
         value="runtime"
       />

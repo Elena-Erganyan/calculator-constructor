@@ -59,6 +59,7 @@ const GlobalStyles = createGlobalStyle`
     color: ${colors.black};
     scrollbar-width: thin;
     scrollbar-color: ${colors.gray} ${colors.white};
+    user-select: none;
   }
 
   *::-webkit-scrollbar {

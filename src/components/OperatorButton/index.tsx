@@ -1,5 +1,5 @@
 import { chooseOperation } from "../../redux/calculatorSlice";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { StyledButton } from "../commonStyledComps";
 
 interface OperatorButtonProps {
@@ -9,8 +9,14 @@ interface OperatorButtonProps {
 const OperatorButton = ({ operator }: OperatorButtonProps) => {
   const dispatch = useAppDispatch();
 
+  const mode = useAppSelector((state) => state.calcConstructor.mode);
+  const isDisabled = mode !== "runtime";
+
   return (
-    <StyledButton onClick={() => dispatch(chooseOperation(operator))}>
+    <StyledButton
+      disabled={isDisabled}
+      onClick={() => dispatch(chooseOperation(operator))}
+    >
       {operator}
     </StyledButton>
   );

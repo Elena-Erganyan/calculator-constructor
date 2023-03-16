@@ -10,14 +10,10 @@ export const StyledBlocksArea = styled.div<StyledBlocksAreaProps>`
     css`
       visibility: hidden;
     `};
-  display: grid;
-  justify-self: end;
-  grid-template-rows: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 1.2rem;
   height: 44.8rem;
   width: 100%;
-
-  @media only screen and (min-width: 768px) {
-    width: 24rem;
-  }
+  max-width: 24rem;
 `;

@@ -1,46 +1,28 @@
-import { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import BlocksArea from "../components/BlocksArea";
 import ConstructorArea from "../components/ConstructorArea";
 import GlobalStyles, { colors } from "../GlobalStyles";
 import { StyledAppContainer } from "./styled";
 import { DragDropContext, DropResult } from "@hello-pangea/dnd";
-import Display from "../components/Display";
-import EqualButton from "../components/EqualButton";
-import Operators from "../components/Operators";
-import Digits from "../components/Digits";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { cloneBlock, reorderBlock } from "../redux/calcConstructorSlice";
 
 function App() {
-  const [mode, setMode] = useState<Mode>("constructor");
+  const dispatch = useAppDispatch();
 
-  const initialData = {
-    fields: {
-      blocksArea: [Display, Operators, Digits, EqualButton],
-      constructorField: [],
-    },
-  };
+  const blocksArea = useAppSelector(
+    (state) => state.calcConstructor.blocksArea
+  );
 
-  const findComponent = (name: string) => {
-    switch (name) {
-      case "Display":
-        return Display;
-      case "Operators":
-        return Operators;
-      case "Digits":
-        return Digits;
-      case "EqualButton":
-        return EqualButton;
-      default:
-        return;
-    }
-  };
-
-  const [data, setData] = useState(initialData);
+  const constructorField = useAppSelector(
+    (state) => state.calcConstructor.constructorField
+  );
 
   const handleOnDragEnd = (result: DropResult) => {
-    // console.log(result);
+    console.log(blocksArea, constructorField);
     const { destination, source, draggableId } = result;
 
+    // dropped outside the list
     if (!destination) return;
 
     if (
@@ -49,24 +31,35 @@ function App() {
     )
       return;
 
-    if (
-      destination.droppableId === "constructorField" &&
-      !data.fields.constructorField.some((item) => item.name === draggableId)
-    ) {
+    if (destination.droppableId === "constructorField") {
       if (draggableId === "Display") {
-        console.log("Not draggable");
+        destination.index = 0;
+      } else {
+        if (destination.index === 0) {
+          destination.index = 1;
+        }
       }
-
-      const newField = data.fields[destination.droppableId].splice(
-        destination.index,
-        0,
-        findComponent(draggableId)
-      );
-
-      setData((oldData) => ({
-        ...oldData,
-        fields: { ...oldData.fields, newField },
-      }));
+      if (destination.droppableId === source.droppableId) {
+        if (destination.index !== source.index) {
+          dispatch(
+            reorderBlock({
+              sourceIndex: source.index,
+              destinationIndex: destination.index,
+              draggableId,
+            })
+          );
+        }
+      } else {
+        if (
+          !constructorField.some(
+            (item: string) => item.indexOf(draggableId) !== -1
+          )
+        ) {
+          dispatch(
+            cloneBlock({ destinationIndex: destination.index, draggableId })
+          );
+        }
+      }
     }
   };
 
@@ -75,8 +68,8 @@ function App() {
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <StyledAppContainer>
           <GlobalStyles />
-          <BlocksArea mode={mode} data={data} setData={setData} />
-          <ConstructorArea data={data} mode={mode} setMode={setMode} />
+          <BlocksArea />
+          <ConstructorArea />
         </StyledAppContainer>
       </DragDropContext>
     </ThemeProvider>

@@ -1,17 +1,22 @@
-import Calculator from "../Calculator";
+import ConstructorField from "../ConstructorField";
 import SwitchButton from "../SwitchButton";
+import { useScreenWidth } from "../useScreenWidth";
 import { StyledConstructorArea } from "./styled";
+import addIcon from "../../images/add-icon.svg";
 
-interface ConstructorAreaProps {
-  mode: Mode;
-  setMode: React.Dispatch<React.SetStateAction<Mode>>;
-}
+const ConstructorArea = () => {
+  const screenWidth = useScreenWidth();
 
-const ConstructorArea = ({ data, mode, setMode }: ConstructorAreaProps) => {
   return (
     <StyledConstructorArea>
-      <SwitchButton mode={mode} setMode={setMode} />
-      <Calculator data={data} />
+      <SwitchButton />
+      <ConstructorField
+        title="Перетащите сюда"
+        text={`любой элемент из ${
+          screenWidth > 768 ? "левой" : "нижней"
+        } панели`}
+        image={addIcon}
+      />
     </StyledConstructorArea>
   );
 };

@@ -1,10 +1,14 @@
 import styled, { css } from "styled-components";
 
+interface StyledBlockWrapperProps {
+  isDisabled: boolean;
+}
+
 interface StyledButtonProps {
   digit?: string;
 }
 
-export const StyledBlockWrapper = styled.div`
+export const StyledBlockWrapper = styled.div<StyledBlockWrapperProps>`
   display: grid;
   padding: 0.4rem;
   border-radius: 0.4rem;
@@ -33,5 +37,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
   &:hover,
   &:active {
     border: 2px solid ${({ theme }) => theme.electric};
+  }
+
+  &:disabled {
+    border: 1px solid ${({ theme }) => theme.lightGray};
   }
 `;

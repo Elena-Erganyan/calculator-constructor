@@ -5,8 +5,5 @@ export const StyledConstructorArea = styled.div`
   flex-direction: column;
   gap: 3rem;
   width: 100%;
-
-  @media only screen and (min-width: 768px) {
-    width: 24rem;
-  }
+  max-width: 24rem;
 `;

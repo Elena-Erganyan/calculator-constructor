@@ -1,22 +1,43 @@
+import {
+  DraggableProvidedDraggableProps,
+  DraggableProvidedDragHandleProps,
+} from "@hello-pangea/dnd";
 import { calculate } from "../../redux/calculatorSlice";
-import { useAppDispatch } from "../../redux/hooks";
-import { StyledBlockWrapper } from "../commonStyledComps";
-import { StyledEqualButton } from "./styled";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { StyledEqualButtonWrapper, StyledEqualButton } from "./styled";
 
-const EqualButton = ({innerRef, draggableProps, dragHandleProps }) => {
+interface EqualButtonProps {
+  innerRef: (HTMLDivElement: HTMLDivElement | null) => void;
+  draggableProps: DraggableProvidedDraggableProps;
+  dragHandleProps: DraggableProvidedDragHandleProps;
+  style: React.CSSProperties;
+}
+
+const EqualButton = ({
+  innerRef,
+  draggableProps,
+  dragHandleProps,
+  style,
+}: EqualButtonProps) => {
   const dispatch = useAppDispatch();
 
+  const mode = useAppSelector((state) => state.calcConstructor.mode);
+  const isDisabled = mode !== "runtime";
+
   return (
-    <StyledBlockWrapper
+    <StyledEqualButtonWrapper
       ref={innerRef}
-      style={{ height: "7.2rem" }}
       {...draggableProps}
       {...dragHandleProps}
+      style={style}
     >
-      <StyledEqualButton onClick={() => dispatch(calculate())}>
+      <StyledEqualButton
+        disabled={isDisabled}
+        onClick={() => dispatch(calculate())}
+      >
         =
       </StyledEqualButton>
-    </StyledBlockWrapper>
+    </StyledEqualButtonWrapper>
   );
 };
 

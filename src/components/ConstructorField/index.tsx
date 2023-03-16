@@ -1,4 +1,7 @@
-import { Droppable } from "@hello-pangea/dnd";
+import { Droppable, Draggable } from "@hello-pangea/dnd";
+import { useTheme } from "styled-components";
+import { useAppSelector } from "../../redux/hooks";
+import { findComponent } from "../../utils";
 import {
   StyledConstructorField,
   StyledConstructorTitle,
@@ -11,20 +14,49 @@ interface ConstructorFieldProps {
   image: string;
 }
 
-const ConstructorField = ({ data, title, text, image }: ConstructorFieldProps) => {
+const ConstructorField = ({ title, text, image }: ConstructorFieldProps) => {
+  const theme = useTheme();
+
+  const constructorField = useAppSelector(
+    (state) => state.calcConstructor.constructorField
+  );
+
   return (
     <Droppable droppableId="constructorField">
-      {(provided) => (
+      {(provided, snapshot) => (
         <StyledConstructorField
+          isEmpty={constructorField.length === 0}
           ref={provided.innerRef}
+          style={{
+            backgroundColor:
+              snapshot.isDraggingOver && !constructorField.length
+                ? theme.sky
+                : theme.white,
+          }}
           {...provided.droppableProps}
         >
-          {data.fields.constructorField?.length ? data.fields.constructorField?.map((Comp) => <Comp />) :
+          {constructorField.length > 0 ? (
+            constructorField.map((item: string, i: number) => {
+              const Item = findComponent(item);
+              return (
+                <Draggable draggableId={item} index={i} key={item}>
+                  {(provided) => (
+                    <Item
+                      innerRef={provided.innerRef}
+                      draggableProps={provided.draggableProps}
+                      dragHandleProps={provided.dragHandleProps}
+                    />
+                  )}
+                </Draggable>
+              );
+            })
+          ) : (
             <>
               <img alt="Icon" src={image} />
               <StyledConstructorTitle>{title}</StyledConstructorTitle>
               <StyledConstructorText>{text}</StyledConstructorText>
-            </>}
+            </>
+          )}
           {provided.placeholder}
         </StyledConstructorField>
       )}

@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import { StyledBlockWrapper } from "../commonStyledComps";
+
+export const StyledDisplayWrapper = styled(StyledBlockWrapper)`
+  height: 6rem;
+`;
 
 export const StyledDisplay = styled.div`
   padding: 0.4rem 0.8rem;
@@ -10,4 +15,5 @@ export const StyledDisplay = styled.div`
   line-height: 1.22;
   text-align: right;
   overflow: auto;
+  cursor: inherit;
 `;
