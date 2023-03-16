@@ -40,13 +40,15 @@ const ConstructorField = ({ title, text, image }: ConstructorFieldProps) => {
               const Item = findComponent(item);
               return (
                 <Draggable draggableId={item} index={i} key={item}>
-                  {(provided) => (
-                    <Item
-                      innerRef={provided.innerRef}
-                      draggableProps={provided.draggableProps}
-                      dragHandleProps={provided.dragHandleProps}
-                    />
-                  )}
+                  {(provided) =>
+                    Item && (
+                      <Item
+                        innerRef={provided.innerRef}
+                        draggableProps={provided.draggableProps}
+                        dragHandleProps={provided.dragHandleProps}
+                      />
+                    )
+                  }
                 </Draggable>
               );
             })

@@ -6,10 +6,10 @@ import { useAppSelector } from "../../redux/hooks";
 import { StyledDisplayWrapper, StyledDisplay } from "./styled";
 
 interface DisplayProps {
-  innerRef: (HTMLDivElement: HTMLDivElement | null) => void;
-  draggableProps: DraggableProvidedDraggableProps;
-  dragHandleProps: DraggableProvidedDragHandleProps;
-  style: React.CSSProperties;
+  innerRef?: (HTMLDivElement: HTMLDivElement | null) => void;
+  draggableProps?: DraggableProvidedDraggableProps;
+  dragHandleProps?: DraggableProvidedDragHandleProps | null;
+  style?: React.CSSProperties;
 }
 
 const Display = ({

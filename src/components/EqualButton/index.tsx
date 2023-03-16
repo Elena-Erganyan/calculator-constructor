@@ -7,10 +7,10 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { StyledEqualButtonWrapper, StyledEqualButton } from "./styled";
 
 interface EqualButtonProps {
-  innerRef: (HTMLDivElement: HTMLDivElement | null) => void;
-  draggableProps: DraggableProvidedDraggableProps;
-  dragHandleProps: DraggableProvidedDragHandleProps;
-  style: React.CSSProperties;
+  innerRef?: (HTMLDivElement: HTMLDivElement | null) => void;
+  draggableProps?: DraggableProvidedDraggableProps;
+  dragHandleProps?: DraggableProvidedDragHandleProps | null;
+  style?: React.CSSProperties;
 }
 
 const EqualButton = ({

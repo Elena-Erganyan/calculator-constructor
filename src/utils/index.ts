@@ -52,5 +52,7 @@ export const findComponent = (name: string) => {
       return Digits;
     case "EqualButton":
       return EqualButton;
+    default:
+      return;
   }
 };

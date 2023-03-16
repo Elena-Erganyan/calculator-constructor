@@ -8,10 +8,6 @@ const BlocksArea = () => {
     (state) => state.calcConstructor.blocksArea
   );
 
-  const constructorField = useAppSelector(
-    (state) => state.calcConstructor.constructorField
-  );
-
   const mode = useAppSelector((state) => state.calcConstructor.mode);
 
   return (
@@ -27,24 +23,21 @@ const BlocksArea = () => {
 
             return (
               <Draggable draggableId={item} index={i} key={item}>
-                {(provided, snapshot) => (
-                  <>
-                    <Item
-                      innerRef={provided.innerRef}
-                      draggableProps={provided.draggableProps}
-                      dragHandleProps={provided.dragHandleProps}
-                      style={{
-                        ...provided.draggableProps.style,
-                        opacity: snapshot.isDragging
-                          ? 0.7
-                          : constructorField.some((item: string) =>
-                              item.indexOf(item) !== -1 ? 0.5 : 1
-                            ),
-                      }}
-                    />
-                    {snapshot.isDragging && <Item />}
-                  </>
-                )}
+                {(provided, snapshot) =>
+                  Item && (
+                    <>
+                      <Item
+                        innerRef={provided.innerRef}
+                        draggableProps={provided.draggableProps}
+                        dragHandleProps={provided.dragHandleProps}
+                        style={{
+                          ...provided.draggableProps.style,
+                          opacity: snapshot.isDragging ? 0.7 : 1,
+                        }}
+                      />
+                      {snapshot.isDragging && <Item />}
+                    </>
+                  )}
               </Draggable>
             );
           })}

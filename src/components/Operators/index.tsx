@@ -6,10 +6,10 @@ import OperatorButton from "../OperatorButton";
 import { StyledOperatorsWrapper } from "./styled";
 
 interface OperatorsProps {
-  innerRef: (HTMLDivElement: HTMLDivElement | null) => void;
-  draggableProps: DraggableProvidedDraggableProps;
-  dragHandleProps: DraggableProvidedDragHandleProps;
-  style: React.CSSProperties;
+  innerRef?: (HTMLDivElement: HTMLDivElement | null) => void;
+  draggableProps?: DraggableProvidedDraggableProps;
+  dragHandleProps?: DraggableProvidedDragHandleProps | null;
+  style?: React.CSSProperties;
 }
 
 const Operators = ({

@@ -6,10 +6,10 @@ import DigitButton from "../DigitButton";
 import { StyledDigitsWrapper } from "./styled";
 
 interface DigitsProps {
-  innerRef: (HTMLDivElement: HTMLDivElement | null) => void;
-  draggableProps: DraggableProvidedDraggableProps;
-  dragHandleProps: DraggableProvidedDragHandleProps;
-  style: React.CSSProperties;
+  innerRef?: (HTMLDivElement: HTMLDivElement | null) => void;
+  draggableProps?: DraggableProvidedDraggableProps;
+  dragHandleProps?: DraggableProvidedDragHandleProps | null;
+  style?: React.CSSProperties;
 }
 
 const Digits = ({

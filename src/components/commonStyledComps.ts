@@ -1,14 +1,10 @@
 import styled, { css } from "styled-components";
 
-interface StyledBlockWrapperProps {
-  isDisabled: boolean;
-}
-
 interface StyledButtonProps {
   digit?: string;
 }
 
-export const StyledBlockWrapper = styled.div<StyledBlockWrapperProps>`
+export const StyledBlockWrapper = styled.div`
   display: grid;
   padding: 0.4rem;
   border-radius: 0.4rem;
