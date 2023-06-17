@@ -1,14 +1,13 @@
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 import { useAppSelector } from "../../redux/hooks";
+import { selectBlocksArea, selectMode } from "../../redux/calcConstructorSlice";
 import { findComponent } from "../../utils";
 import { StyledBlocksArea } from "./styled";
 
 const BlocksArea = () => {
-  const blocksArea = useAppSelector(
-    (state) => state.calcConstructor.blocksArea
-  );
+  const blocksArea = useAppSelector(selectBlocksArea);
 
-  const mode = useAppSelector((state) => state.calcConstructor.mode);
+  const mode = useAppSelector(selectMode);
 
   return (
     <Droppable droppableId="blocksArea" isDropDisabled={true}>
@@ -37,7 +36,8 @@ const BlocksArea = () => {
                       />
                       {snapshot.isDragging && <Item />}
                     </>
-                  )}
+                  )
+                }
               </Draggable>
             );
           })}

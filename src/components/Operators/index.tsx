@@ -3,6 +3,7 @@ import {
   DraggableProvidedDragHandleProps,
 } from "@hello-pangea/dnd";
 import OperatorButton from "../OperatorButton";
+import { operators } from "./config";
 import { StyledOperatorsWrapper } from "./styled";
 
 interface OperatorsProps {
@@ -25,10 +26,9 @@ const Operators = ({
       {...dragHandleProps}
       style={style}
     >
-      <OperatorButton operator="/" />
-      <OperatorButton operator="x" />
-      <OperatorButton operator="-" />
-      <OperatorButton operator="+" />
+      {operators.map((op) => (
+        <OperatorButton key={op} operator={op} />
+      ))}
     </StyledOperatorsWrapper>
   );
 };

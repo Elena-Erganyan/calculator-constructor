@@ -3,6 +3,7 @@ import {
   DraggableProvidedDragHandleProps,
 } from "@hello-pangea/dnd";
 import { useAppSelector } from "../../redux/hooks";
+import { selectDisplay } from "../../redux/calculatorSlice";
 import { StyledDisplayWrapper, StyledDisplay } from "./styled";
 
 interface DisplayProps {
@@ -18,7 +19,7 @@ const Display = ({
   draggableProps,
   style,
 }: DisplayProps) => {
-  const display = useAppSelector((state) => state.calculator.display);
+  const display = useAppSelector(selectDisplay);
 
   return (
     <StyledDisplayWrapper

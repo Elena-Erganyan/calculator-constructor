@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { evaluate } from "../utils";
+import { RootState } from "./store";
 
 export interface CalculatorState {
   display?: string;
@@ -104,3 +105,6 @@ export const { addDigit, chooseOperation, clear, calculate } =
   calculatorSlice.actions;
 
 export default calculatorSlice.reducer;
+
+// selectors
+export const selectDisplay = (state: RootState) => state.calculator.display;

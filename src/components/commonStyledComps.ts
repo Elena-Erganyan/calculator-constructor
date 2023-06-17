@@ -1,11 +1,17 @@
 import styled, { css } from "styled-components";
 
-interface StyledButtonProps {
-  digit?: string;
+interface StyledBlockWrapperProps {
+  operator?: string;
 }
 
-export const StyledBlockWrapper = styled.div`
+interface StyledButtonProps {
+  digit?: string;
+  operator?: string;
+}
+
+export const StyledBlockWrapper = styled.div<StyledBlockWrapperProps>`
   display: grid;
+  height: ${({ operator }) => (operator === "=" ? "7.2rem" : "auto")};
   padding: 0.4rem;
   border-radius: 0.4rem;
   background-color: ${({ theme }) => theme.white};
@@ -19,10 +25,13 @@ export const StyledButton = styled.button<StyledButtonProps>`
     css`
       grid-area: ${digit === "," ? "comma" : `d${digit}`};
     `}
-  height: 4.8rem;
-  background-color: ${({ theme }) => theme.white};
-  color: ${({ theme }) => theme.black};
-  border: 1px solid ${({ theme }) => theme.lightGray};
+  height: ${({ operator }) => (operator === "=" ? "6.4rem" : "4.8rem")};
+  background-color: ${({ theme, operator }) =>
+    operator === "=" ? theme.electric : theme.white};
+  color: ${({ theme, operator }) =>
+    operator === "=" ? theme.white : theme.black};
+  border: ${({ theme, operator }) =>
+    operator === "=" ? "none" : `1px solid ${theme.lightGray}`};
   border-radius: 0.6rem;
   font-family: "Inter Medium", sans-serif;
   font-size: 1.4rem;

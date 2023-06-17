@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "./store";
 
 export interface ConstructorState {
   blocksArea: string[];
@@ -51,3 +52,12 @@ export const { cloneBlock, reorderBlock, toggleMode } =
   calcConstructorSlice.actions;
 
 export default calcConstructorSlice.reducer;
+
+// selectors
+export const selectBlocksArea = (state: RootState) =>
+  state.calcConstructor.blocksArea;
+
+export const selectConstructorField = (state: RootState) =>
+  state.calcConstructor.constructorField;
+
+export const selectMode = (state: RootState) => state.calcConstructor.mode;

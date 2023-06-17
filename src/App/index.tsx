@@ -1,22 +1,23 @@
 import { ThemeProvider } from "styled-components";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import {
+  cloneBlock,
+  reorderBlock,
+  selectBlocksArea,
+  selectConstructorField,
+} from "../redux/calcConstructorSlice";
 import BlocksArea from "../components/BlocksArea";
 import ConstructorArea from "../components/ConstructorArea";
+import { DragDropContext, DropResult } from "@hello-pangea/dnd";
 import GlobalStyles, { colors } from "../GlobalStyles";
 import { StyledAppContainer } from "./styled";
-import { DragDropContext, DropResult } from "@hello-pangea/dnd";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { cloneBlock, reorderBlock } from "../redux/calcConstructorSlice";
 
 function App() {
   const dispatch = useAppDispatch();
 
-  const blocksArea = useAppSelector(
-    (state) => state.calcConstructor.blocksArea
-  );
+  const blocksArea = useAppSelector(selectBlocksArea);
 
-  const constructorField = useAppSelector(
-    (state) => state.calcConstructor.constructorField
-  );
+  const constructorField = useAppSelector(selectConstructorField);
 
   const handleOnDragEnd = (result: DropResult) => {
     console.log(blocksArea, constructorField);

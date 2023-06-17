@@ -2,9 +2,8 @@ import {
   DraggableProvidedDraggableProps,
   DraggableProvidedDragHandleProps,
 } from "@hello-pangea/dnd";
-import { calculate } from "../../redux/calculatorSlice";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { StyledEqualButtonWrapper, StyledEqualButton } from "./styled";
+import OperatorButton from "../OperatorButton";
+import { StyledBlockWrapper } from "../commonStyledComps";
 
 interface EqualButtonProps {
   innerRef?: (HTMLDivElement: HTMLDivElement | null) => void;
@@ -19,25 +18,16 @@ const EqualButton = ({
   dragHandleProps,
   style,
 }: EqualButtonProps) => {
-  const dispatch = useAppDispatch();
-
-  const mode = useAppSelector((state) => state.calcConstructor.mode);
-  const isDisabled = mode !== "runtime";
-
   return (
-    <StyledEqualButtonWrapper
+    <StyledBlockWrapper
       ref={innerRef}
       {...draggableProps}
       {...dragHandleProps}
       style={style}
+      operator="="
     >
-      <StyledEqualButton
-        disabled={isDisabled}
-        onClick={() => dispatch(calculate())}
-      >
-        =
-      </StyledEqualButton>
-    </StyledEqualButtonWrapper>
+      <OperatorButton operator="=" />
+    </StyledBlockWrapper>
   );
 };
 

@@ -1,6 +1,7 @@
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 import { useTheme } from "styled-components";
 import { useAppSelector } from "../../redux/hooks";
+import { selectConstructorField } from "../../redux/calcConstructorSlice";
 import { findComponent } from "../../utils";
 import {
   StyledConstructorField,
@@ -17,9 +18,7 @@ interface ConstructorFieldProps {
 const ConstructorField = ({ title, text, image }: ConstructorFieldProps) => {
   const theme = useTheme();
 
-  const constructorField = useAppSelector(
-    (state) => state.calcConstructor.constructorField
-  );
+  const constructorField = useAppSelector(selectConstructorField);
 
   return (
     <Droppable droppableId="constructorField">
